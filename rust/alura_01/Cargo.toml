@@ -1,0 +1,7 @@
+[package]
+name = "alura_01"
+version = "0.1.0"
+edition = "2021"
+authors = ["Gilberto Ribeiro <gilberto.ribeiro@alumni.usp.br>"]
+
+[dependencies]
