@@ -34,13 +34,30 @@ fn main() {
     }
     println!("End count = {count}");
 
-    let mut number = 3;
+//    let mut number = 3;
+//
+//    while number != 0 {
+//        println!("{number}");
+//
+//        number -= 1;
+//    }
 
-    while number != 0 {
+    for number in (1..4).rev() {
         println!("{number}");
-
-        number -= 1;
     }
 
     println!("LIFTOFF!!!");
+
+    let a: [i32; 5] = [10, 20, 30, 40, 50];
+//    let mut index: usize = 0;
+//
+//    while index < 5 {
+//        println!("the value is: {}", a[index]);
+//
+//        index += 1;
+//    }
+
+    for element in a {
+        println!("the value is: {element}");
+    }
 }
