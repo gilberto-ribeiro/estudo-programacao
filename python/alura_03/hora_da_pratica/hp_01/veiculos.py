@@ -15,6 +15,12 @@ class Veiculo:
     def __str__(self):
         return f"Veículo {self.modelo} da marca {self.marca}. {self.ligado}."
 
+    def ligar(self):
+        self._ligado = True
+
+    def desligar(self):
+        self._ligado = False
+
 
 class Carro(Veiculo):
     def __init__(self, marca: str, modelo: str, portas: int) -> None:
