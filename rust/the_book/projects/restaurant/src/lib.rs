@@ -1,15 +1,15 @@
 const PI: f32 = 3.14159265358979324;
 
-mod front_of_house;
 mod back_of_house;
+mod front_of_house;
 
 use crate::front_of_house::hosting;
 
 mod customer {
     use crate::back_of_house;
     // use super::front_of_house::{hosting, hosting::add_to_waitlist};
-    use crate::front_of_house::hosting::{self, add_to_waitlist};
     use super::front_of_house::serving::*;
+    use crate::front_of_house::hosting::{self, add_to_waitlist};
 
     fn eat_at_restaurant() {
         crate::front_of_house::hosting::add_to_waitlist(); // Absolute path
