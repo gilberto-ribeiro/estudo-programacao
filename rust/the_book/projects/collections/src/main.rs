@@ -5,6 +5,10 @@ enum SpreadSheepCell {
 }
 
 fn main() {
+    strings()
+}
+
+fn vectors() {
     let mut v1: Vec<i32> = Vec::new();
     v1.push(1);
     v1.push(2);
@@ -53,4 +57,48 @@ fn main() {
         SpreadSheepCell::Float(x) => println!("Float: {x}."),
         SpreadSheepCell::Text(x) => println!("Texto: {x}."),
     }
+}
+
+fn strings() {
+    let mut s1: String = String::from("Hello");
+    let s2: String = "World".to_string();
+    println!("{s1}, {s2}.");
+    s1.push_str(", World...");
+    println!("Push_str: {s1}");
+    s1.push_str(&s2);
+    println!("Push_str: {s1}");
+    let s3 = s1 + ", " + &s2;
+    println!("{s3}");
+
+    let mut t1 = String::new();
+    t1.push_str("tic");
+    let t2 = String::from("tac");
+    let t3 = "toe".to_string();
+    let t4 = format!("{t1} - {t2} - {t3}");
+    let t5 = t1 + "-" + &t2 + "-" + &t3;
+
+    println!("t4: {t4}");
+    println!("t5: {t5}");
+
+    let n1: &str = "aeiou";
+    let n2: String = String::from(n1);
+    println!("{n1} - {n2}");
+    // println!("{}", &n1[0]);
+    // println!("{}", n2[0]);
+
+    let hello = "Здравствуйте";
+
+    let s = &hello[0..4];
+
+    println!("{s}");
+
+    println!("Imprimindo os chars:");
+    for c in s.chars() {
+        println!("{c}");
+    }
+    println!("Imprimindo os bytes:");
+    for b in s.bytes() {
+        println!("{b}");
+    }
+    
 }
