@@ -2,30 +2,39 @@ from modelos.restaurante import Restaurante
 from modelos.cardapio.prato import Prato
 from modelos.cardapio.bebida import Bebida
 from modelos.cardapio.sobremesa import Sobremesa
+import requests
+import json
 
-restaurante_1 = Restaurante("Burger King", "Fast Food")
-# restaurante_2 = Restaurante("Di Caprio", "Pizzaria")
-# restaurante_3 = Restaurante("Bardana", "Restaurante")
+url = "https://guilhermeonrails.github.io/api-restaurantes/restaurantes.json"
 
-bebida_1 = Bebida("Suco de Melancia", 10.00, "500ml")
-bebida_1.aplicar_desconto()
-prato_1 = Prato("Pãozinho", 2.00, "Pão de fermentação natural, quentinho.")
-prato_1.aplicar_desconto()
-bebida_2 = Bebida("Suco de Maracujá", 5.00, "400ml")
-bebida_2.promocao()
-prato_1.promocao()
-sobremesa_1 = Sobremesa("Chocolate", 3.00, "Chocolate branco", "grande")
-sobremesa_2 = Sobremesa("Mousse de maracujá", 4.00, "Cremosinho", "médio")
-sobremesa_1.aplicar_desconto()
+def importar_restaurantes(url: str) -> dict:
+    response = requests.get(url)
+    if response.status_code == 200:
+        dados_json = response.json()
+        dados_restaurante = {}
+        for item in dados_json:
+            nome_do_restaurante = item["Company"]
+            if nome_do_restaurante not in dados_restaurante:
+                dados_restaurante[nome_do_restaurante] = []
+            dados_restaurante[nome_do_restaurante].append({
+                "nome": item["Item"],
+                "preco": item["price"],
+                "descricao": item["description"]
+            })
+        return dados_restaurante
+    else:
+        print(f"Falha ao importar JSON. Código: {response.status_code}.")
+
+def exportar_json_restaurantes(dados_restaurantes: dict) -> None:
+    for restaurante, dados in dados_restaurantes.items():
+        nome_do_arquivo = f"restaurantes_json/{restaurante}.json"
+        with open(nome_do_arquivo, 'w') as arquivo_json:
+            json.dump(dados, arquivo_json, indent=4)
 
 
 def main():
-    restaurante_1.adicionar_ao_cardapio(prato_1)
-    restaurante_1.adicionar_ao_cardapio(bebida_1)
-    restaurante_1.adicionar_ao_cardapio(bebida_2)
-    restaurante_1.adicionar_ao_cardapio(sobremesa_1)
-    restaurante_1.adicionar_ao_cardapio(sobremesa_2)
-    restaurante_1.mostrar_cardapio()
+    dados_restaurantes = importar_restaurantes(url)
+    exportar_json_restaurantes(dados_restaurantes)
 
 
 if __name__ == "__main__":
