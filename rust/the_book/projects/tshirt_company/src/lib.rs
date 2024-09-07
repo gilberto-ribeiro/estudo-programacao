@@ -37,7 +37,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn return_shirt_color_with_preference() {
+    fn return_shirt_color_with_user_preference() {
         let user_preference = Some(ShirtColor::Red);
         let store = Inventory {
             shirts: vec![ShirtColor::Blue, ShirtColor::Red, ShirtColor::Blue],
@@ -46,7 +46,7 @@ mod tests {
     }
 
     #[test]
-    fn return_shirt_color_with_no_preference() {
+    fn return_shirt_color_with_no_user_preference() {
         let user_preference = None;
         let store = Inventory {
             shirts: vec![ShirtColor::Blue, ShirtColor::Red, ShirtColor::Blue],
