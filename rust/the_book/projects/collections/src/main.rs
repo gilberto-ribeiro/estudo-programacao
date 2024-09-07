@@ -1,11 +1,14 @@
-enum SpreadSheepCell {
+use std::{collections::HashMap, hash::Hash};
+
+enum SpreadSheetCell {
     Int(i32),
     Float(f32),
     Text(String),
 }
 
 fn main() {
-    strings()
+    strings();
+    hash_map();
 }
 
 fn vectors() {
@@ -29,7 +32,7 @@ fn vectors() {
     // let does_not_exist = dbg!(&v2[100]);
     let does_not_exist = dbg!(v2.get(100));
 
-    let mut v3: Vec<i32> = vec!(1, 2, 3, 4, 5);
+    let mut v3: Vec<i32> = vec![1, 2, 3, 4, 5];
 
     let mut first: &i32 = &mut v3[0];
 
@@ -46,16 +49,16 @@ fn vectors() {
 
     println!("{v:?}");
 
-    let row: Vec<SpreadSheepCell> = vec![
-        SpreadSheepCell::Text(String::from("Gilberto Ribeiro")),
-        SpreadSheepCell::Int(32),
-        SpreadSheepCell::Float(64.64),
+    let row: Vec<SpreadSheetCell> = vec![
+        SpreadSheetCell::Text(String::from("Gilberto Ribeiro")),
+        SpreadSheetCell::Int(32),
+        SpreadSheetCell::Float(64.64),
     ];
 
     match &row[2] {
-        SpreadSheepCell::Int(x) => println!("Inteiro: {x}."),
-        SpreadSheepCell::Float(x) => println!("Float: {x}."),
-        SpreadSheepCell::Text(x) => println!("Texto: {x}."),
+        SpreadSheetCell::Int(x) => println!("Inteiro: {x}."),
+        SpreadSheetCell::Float(x) => println!("Float: {x}."),
+        SpreadSheetCell::Text(x) => println!("Texto: {x}."),
     }
 }
 
@@ -100,5 +103,12 @@ fn strings() {
     for b in s.bytes() {
         println!("{b}");
     }
+}
+
+fn hash_map() {
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
     
 }
