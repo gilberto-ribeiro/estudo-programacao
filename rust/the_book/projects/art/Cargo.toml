@@ -1,0 +1,8 @@
+[package]
+name = "art"
+description = "Works with art, like colors."
+license = "MIT"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
